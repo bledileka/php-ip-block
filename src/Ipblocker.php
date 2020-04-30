@@ -39,11 +39,11 @@ class Verifyip
 				$CustomBlacklisted = $this->isBlacklistedCustom();
 				if ($CustomBlacklisted == 1) {
 					// we have a custom blacklisting rule!
-					$stop =1;
+					$stop = 1;
 				} else {
 					// last option go throught the rest of the lists
 					$islisted = $this->isBlaclistedLists();
-					if ($islisted==1) {
+					if ($islisted == 1) {
 						$stop = 1;
 					}
 				}
@@ -52,7 +52,7 @@ class Verifyip
 		}
 		// if no ip do nothing
 
-		if ($stop==1){
+		if ($stop == 1) {
 			if (isset($this->redir_url) && $this->redir_url != "") {
 				header("Location: " . $this->redir_url);
 			}
@@ -68,11 +68,10 @@ class Verifyip
 		if (isset($this->lists) && is_array($this->lists) && count($this->lists) > 0) {
 			$found = 0;
 			foreach ($this->lists as $list) {
-				$file = __DIR__."/ip_ranges/".$list;
+				$file = __DIR__ . "/ip_ranges/" . $list;
 				if (file_exists($file)) {
-					$file = fopen($file,"r");
-					while(! feof($file))
-					{
+					$file = fopen($file, "r");
+					while (!feof($file)) {
 						$rangeip = trim(fgets($file));
 						$exists = $this->isInrange($this->ip, $rangeip);
 						if (isset($exists) && $exists == 1) {
@@ -150,11 +149,5 @@ class Verifyip
 			$ipaddress = getenv('REMOTE_ADDR');
 		return $ipaddress;
 	}
-
-	public function amazonRanges()
-	{
-		$url = "https://ip-ranges.amazonaws.com/ip-ranges.json";
-	}
-
 
 }
