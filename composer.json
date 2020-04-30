@@ -1,14 +1,23 @@
 {
-    "name": "bledileka/ipblocker",
-    "description": "Block ip/range from accessing a web page.",
-    "type": "library",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Bledar Leka",
-            "email": "leka.al@gmail.com"
-        }
-    ],
-    "minimum-stability": "dev",
-    "require": {}
+  "name": "bledileka/php-ip-block",
+  "description": "Block ip/range from accessing a web page.",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Bledar Leka",
+      "email": "leka.al@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.4"
+  },
+  "autoload": {
+    "psr-0": {
+      "Ipblocker": "src/"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require": {}
 }
