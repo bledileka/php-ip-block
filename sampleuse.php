@@ -1,9 +1,3 @@
-# php-ip-block
-Block ip/range from accessing a web page.
-
-Sample use:
-
-```php
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
 use Bledileka\Ipblocker;
@@ -25,7 +19,7 @@ $whitelist = [
 
 new Bledileka\Ipblocker\Verifyip (
 	[
-		"ip_address"=>"67.207.68.6", //pass the users ip address or leave it empty for autodetection - works only for http/s requests
+		"ip_address"=>"67.207.68.6", //pass the users ip address or leave it empty for autodetection - works only for http requests
 		"blocked_redirect_to_url"=>"", //if user is coming from one of the blocked ranges then redir
 		"lists"=>$blockeRanges,
 		"custom"=>$custom,
@@ -35,4 +29,3 @@ new Bledileka\Ipblocker\Verifyip (
 
 
 ?>
-```
