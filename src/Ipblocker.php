@@ -9,7 +9,6 @@ class Verifyip
 {
 	public function __construct($configs)
 	{
-
 		if (isset($configs["ip_address"]) && $configs["ip_address"] != "") {
 			//use the provided ip address
 			$this->ip = trim($configs["ip_address"]);
@@ -118,7 +117,6 @@ class Verifyip
 		return $found;
 	}
 
-
 	public function isInrange($ip, $range)
 	{
 		if (strpos($range, '/') === false) {
@@ -148,6 +146,24 @@ class Verifyip
 		else if (getenv('REMOTE_ADDR'))
 			$ipaddress = getenv('REMOTE_ADDR');
 		return $ipaddress;
+	}
+
+	public function getawsips(){
+		$url = "https://ip-ranges.amazonaws.com/ip-ranges.json";
+		$contents = file_get_contents($url);
+		$json = json_decode($contents);
+		$ips = "";
+		foreach ($json->prefixes as $e=>$val) {
+			if (isset($val->ip_prefix)) {
+				$ips .= $val->ip_prefix . "\n";
+			}
+		}
+		foreach ($json->ipv6_prefixes as $e=>$val) {
+			if (isset($val->ipv6_prefix)) {
+				$ips .= $val->ipv6_prefix . "\n";
+			}
+		}
+		file_put_contents("src/ip_ranges/aws.txt",$ips);
 	}
 
 }
